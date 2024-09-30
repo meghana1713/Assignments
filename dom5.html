@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input class="num1" type="text" placeholder="Enter 1st number">
+    <input class="num2" type="text" placeholder="Enter 2nd number">
+    <button id="exponent">click here to find the exponent!</button>
+
+
+</body>
+</html>
+<script>
+  document.getElementById("exponent").addEventListener("click",expfun);
+  let res=1;
+ function expfun(){
+    let n1 =  parseFloat(document.getElementsByClassName("num1")[0].value);
+    let n2 =  parseFloat(document.getElementsByClassName("num2")[0].value);
+
+
+
+  for(let i=0;i<n2;i++)
+  {
+res*=n1;
+  }
+alert(res);
+}
+</script>

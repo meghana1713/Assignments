@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parentContainer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Define 4 columns */
+            justify-content: flex-end;
+            border: 2px solid rgb(255, 255, 146);
+            width: 100%;
+            height: 950px;
+        }
+        .parentContainer > div {
+            background-color: blueviolet;
+            border: 2px solid pink;
+            justify-items: center;
+            width: 250px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parentContainer">
+        <div class="card1">H</div>
+        <div class="card2">E</div>
+        <div class="card3">L</div>
+        <div class="card4">L</div>
+    </div>
+</body>
+</html>

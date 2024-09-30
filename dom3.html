@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>example</h1>
+    <hr/>
+    <h1 id="display">click on login to continue</h1>
+    <button id= btn1 onclick="login()">login</button>
+    <button id = btn2 onclick="logout()">logout</button>
+</body>
+</html>
+<script>
+    function login(){
+        let head1=document.getElementById("display");
+        head1.innerText="Login success";
+        console.log(head1);
+    }
+    function logout(){
+        let head1=document.getElementById("display");
+        head1.innerText="Logout success";
+        console.log(head1);
+
+    }
+
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="links">
+    <div><a href="./index.html">home</a> </div><!--as anchor tags are inlijne tags its take sonly neccasary space so use div to get in next line eaach link-->
+    <div><a href="">Applied_jobs</a></div>
+    <div><a href="">Bookmarks</a></div>
+</div>
+<form id="form">
+  <h1>Enter your Application details here</h1>
+  <input type="text" id="name" placeholder="enter your name"/>
+  <input type="email" id="email" placeholder="enter email">
+  <select id="role">
+    <option value="">select role</option>
+    <option value="fsd">Fsd</option>
+    <option value="frontend">frontend</option>
+    <option value="backend">backend</option>
+  </select>
+  <input id="expsal" type="number" placeholder="enter expected salary"/>
+  <input type="submit" id="submit" value="submit"/>
+</form>
+</body>
+</html>
+<script> 
+      document.querySelector("#form").addEventListener("submit", jobSubmit);
+      let jobArr;
+      if(localStorage.getItem("jobList")!==null)/*if there is any data in local storage convert it into object from json fromat using jsonparse and store in jobarray as if there are multiple objects under same keyname database here it is localstorage store in array other wise create an empty array we store it after clicking every time submit button after entering the details*/
+      {
+        jobArr=JSON.parse(localStorage.getItem("jobList"));
+
+      }
+      else{
+        jobArr=[];
+      }
+
+      function jobSubmit(){
+        event.preventDefault();
+        let jobObj={
+            personname:document.querySelector("#name").value,/*whatever we give input throught input and select elements values will now store in object for everyperson detailss*/
+            personemail:document.querySelector("#email").value,
+            personrole:document.querySelector("#role").value,
+            personsalary:document.querySelector("#expsal").value
+
+        };
+
+       jobArr.push(jobObj);/*push is used to add or insert elements in an array elements cab be another array or it can be numbers,string or object here it is object*/
+       localStorage.setItem("jobList",JSON.stringify(jobArr));/*here we are now creating an key with jobList name and give its value as our data that is an array called jobArr as data that can be understand by database or localstorage is in jsonformat to convert whatever the data in array to json formate we are using json.stringify(value)*/
+       window.location.href="Applied_jobs.html";/* it is used to redirect to the new page without clicking any link */
+
+      }
+     
+</script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="links">
+        <div><a href="./index.html">home</a> </div><!--as anchor tags are inlijne tags its take sonly neccasary space so use div to get in next line eaach link-->
+        <div><a href="./Applied_jobs.html">Applied_jobs</a></div>
+        <div><a href="">Bookmarks</a></div>
+    </div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>ExpectedSalary</th>
+                <th>Add to Bookmark</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <!-- this part comes from js code-->
+        </tbody>
+    </table>
+</body>
+</html>
+<script>
+    let jobArr=JSON.parse(localStorage.getItem("jobList"));//now we need to retrive the data in localstorage which is in json formarte which cannot understand by js to understand it we convert back in to object using json.parse(key_name) method
+    let bookMarkArr=JSON.parse(localStorage.getItem("bookmarks"))||[];// (T || F,true will be  executed if we have array with name bookmarks in localstorage assign it to bookMarkArr variable if not create an empty array and assigned to bookMarkArr variable 
+    jobArr.forEach( function(element){
+let  tr=document.createElement("tr");//here element is an object in jobArr array and personname is an properties key value
+
+let td1=document.createElement("td");
+td1.innerHTML=element.personname;
+let td2=document.createElement("td");
+td2.innerHTML=element.personemail;//here element is an object in jobArr array and personname is an properties key value
+let td3=document.createElement("td");
+td3.innerHTML=element.personrole;
+let td4=document.createElement("td");
+td4.innerHTML=element.personsalary;
+let td5=document.createElement("td");
+td5.innerHTML="Bookmarks";
+td5.addEventListener("click",function(){/*here if we take like normal addeventlisenter functioon as bookmark only function name as we are calling it for each  object on which we click on bookmork so we need to pass element as argument if we give like bookfun
+    (element then it will be a fun call without clicking only it directly calls that function to aviod it we give anonymous function which calls its self when we click on bookmark it again calls bookfun inside)*/
+    bookfun(element);
+});
+tr.append(td1,td2,td3,td4,td5);
+document.querySelector("tbody").append(tr);
+    });
+function bookfun(element){
+    bookMarkArr.push(element);//pushing the objects on which we cick bookmark will be added in to bookarr
+    localStorage.setItem("bookmarks",JSON.stringify(bookMarkArr));//now add this bookarr with keyname as bookmarks in values  before adding convert them on to json format
+}
+
+    
+
+        
+
+</script>

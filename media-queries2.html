@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .boxtitle{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .boxes{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap:20px;
+        }
+        .cards{
+            height: 200px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+        }
+        .container{
+            margin-left: 60px;
+            margin-right: 60px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        @media all and (min-width: 768px) and (max-width: 1023px) {
+                .boxes{
+                    grid-template-columns: repeat(2,1fr);
+
+
+                }
+            } 
+            @media all and (max-width:767px){
+               .boxes{
+                  
+                    grid-template-columns: repeat(1,1fr);
+
+                }
+            }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div class="boxes">
+        <div class="cards">
+            <div class="boxtitle">
+                <h1>Cappuccino</h1>
+                <h1>$49</h1>
+            </div>
+            <div class="card-content">
+                <p>usage of the internet is becoming more
+                  common due to rapid advance
+                </p>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="boxtitle">
+                <h1>Americano</h1>
+                <h1>$49</h1>
+            </div>
+            <div class="card-content">
+                <p>usage of the internet is becoming more
+                  common due to rapid advance
+                </p>
+            </div>    
+        </div>
+        <div class="cards">
+            <div class="boxtitle">
+                <h1>Espresso</h1>
+                <h1>$49</h1>
+            </div>
+            <div class="card-content">
+                <p>usage of the internet is becoming more
+                  common due to rapid advance
+                </p>
+            </div>    
+        </div>
+        <div class="cards">
+            <div class="boxtitle">
+                <h1>Macchiato</h1>
+                <h1>$49</h1>
+            </div>
+            <div class="card-content">
+                <p>usage of the internet is becoming more
+                  common due to rapid advance
+                </p>
+            </div>    
+        </div>
+        <div class="cards">
+            <div class="boxtitle">
+                <h1>Mocha</h1>
+                <h1>$49</h1>
+            </div>
+            <div class="card-content">
+                <p>usage of the internet is becoming more
+                  common due to rapid advance
+                </p>
+            </div>    
+        </div>
+        <div class="cards">
+            <div class="boxtitle">
+                <h1>Coffee Latte</h1>
+                <h1>$49</h1>
+            </div>
+            <div class="card-content">
+                <p>usage of the internet is becoming more
+                  common due to rapid advance
+                </p>
+            </div>    
+        </div>
+        <div class="cards">
+            <div class="boxtitle">
+                <h1>Piccolo Latte</h1>
+                <h1>$49</h1>
+            </div>
+            <div class="card-content">
+                <p>usage of the internet is becoming more
+                  common due to rapid advance
+                </p>
+            </div>    
+        </div>
+        <div class="cards">
+            <div class="boxtitle">
+                <h1>Ristretto</h1>
+                <h1>$49</h1>
+            </div>
+            <div class="card-content">
+                <p>usage of the internet is becoming more
+                  common due to rapid advance
+                </p>
+            </div>    
+        </div>
+        <div class="cards">
+            <div class="boxtitle">
+                <h1>Affogato</h1>
+                <h1>$49</h1>
+            </div>
+            <div class="card-content">
+                <p>usage of the internet is becoming more
+                  common due to rapid advance
+                </p>
+            </div>    
+        </div>
+    </div>
+</div></body>
+</html>

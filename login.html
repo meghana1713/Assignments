@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form1">
+        <input type="text" id="Username" placeholder="enter username"/>
+        <input type="password" id="Password"  placeholder="enter password"/>
+        <input type="submit" id="submit1" value="submit"/>
+    </form>
+
+</body>
+</html>
+<script>
+        document.querySelector("#form1").addEventListener("submit",compfun);
+          let credentialsArr=JSON.parse(localStorage.getItem("credentialList"));
+
+function compfun() {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+     credentialsArr = JSON.parse(localStorage.getItem("credentialList")) || [];
+    let userN = document.querySelector("#Username").value;
+    let pass = document.querySelector("#Password").value;
+
+    let isLoginSuccessful = false;//flag value set to false
+
+    credentialsArr.forEach(function(element) {
+        if ((userN.toLowerCase() === element.username.toLowerCase()) && (pass === element.password)) {
+            isLoginSuccessful = true; // Set flag to true if we find a match if we wont keep flag value it will not chech all object's properties in array or first object's properties is not found it directly redirect to login page.
+        }
+    });
+
+    if (isLoginSuccessful) {
+        alert("login successful");
+        window.location.href = "mens.html"; // Redirect to mens.html only after checking all credentials
+    } else {
+        window.location.href = "login.html"; // Redirect to login.html if no match was found
+    }
+}
+
+
+</script>

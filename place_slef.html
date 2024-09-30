@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid place-self Example</title>
+  <style>
+    /* Define the grid container with three columns and two rows */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+      grid-template-rows: 100px 100px; /* Two equal rows */
+      gap: 10px; /* Gap between grid items */
+      height: 220px; /* Height of the grid container */
+      border: 2px solid #333; /* Border around the grid container */
+    }
+
+    /* General styling for grid items */
+    .grid-item {
+      background: lightcoral; /* Background color for grid items */
+      border: 1px solid #333; /* Border around grid items */
+      color: white; /* Text color */
+      display: flex; /* Use Flexbox to center text */
+      align-items: center; /* Center text vertically */
+      justify-content: center; /* Center text horizontally */
+    }
+
+    /* Specific alignments for grid items */
+    .item1 {
+      place-self: end; /* Center both vertically and horizontally */
+    }
+
+    .item2 {
+      place-self: start center; /* Align start vertically and center horizontally */
+    }
+
+    .item3 {
+      place-self: end end; /* Align end vertically and end horizontally */
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-container">
+    <div class="grid-item item1">Item 1</div>
+    <div class="grid-item item2">Item 2</div>
+    <div class="grid-item item3">Item 3</div>
+  </div>
+</body>
+</html>

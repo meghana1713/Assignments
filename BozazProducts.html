@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cards_products {
+            border: 2px solid black;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            width: 100%;
+            gap: 60px;
+            border: 2px solid yellow;
+        }
+        .cardboxes {
+            border: 2px solid maroon;
+            padding: 0px; /* Add padding inside each cardbox */
+           
+        }
+        h2,p1,p2,p3,button1{
+            padding: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            border: 2px solid purple;
+        }
+    </style>
+</head>
+<body>
+</body>
+</html>
+<script>
+    let productArr = JSON.parse(localStorage.getItem("productlist"));
+
+    // Create and append the cards_products container once thats why  we create it outside the loop
+    let cards_products = document.createElement("div");
+    cards_products.setAttribute("class", "cards_products");
+    document.querySelector("body").append(cards_products);
+
+    // Iterate over each product and create a cardboxes element for each
+    productArr.forEach(function(element, index) {
+        let cardboxes = document.createElement("div");
+        cardboxes.setAttribute("class", "cardboxes");
+
+        let h2 = document.createElement("h2");
+        h2.innerText = element.productcategory;
+
+        let p1 = document.createElement("p");
+        p1.innerText = element.producttitle;
+
+        let p2 = document.createElement("p");
+        p2.innerText = element.description;
+
+        let p3 = document.createElement("p");
+        p3.innerText = element.product_price;
+
+        let button1 = document.createElement("button");
+        button1.innerText = "Delete";
+
+        button1.addEventListener("click", function() {
+            deleteItem(element,index);
+        });
+
+        cardboxes.append(h2, p1, p2, p3, button1);
+        cards_products.append(cardboxes);
+    });
+
+    function deleteItem(element,index) {
+        // Remove item from the  product array
+        productArr.splice(index, 1);
+        // Update local storage
+        localStorage.setItem("productlist", JSON.stringify(productArr));
+        // Reload the page to reflect changes
+        window.location.reload();
+    }
+</script>

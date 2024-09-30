@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .cardcontainer{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            width:70%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 20px;
+          
+            gap:20px;
+        }
+        .images{
+            width:100%;
+            height:50%;
+        }
+        .cardboxes{
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+
+    </style>
+</body>
+</html>
+<script>
+    var data = [
+    {
+        imgUrl:"bags.jpg",
+        name:"bags",
+        price:"$25.00",
+        strikedOffPrice:"$95.00"
+    },{
+        imgUrl:"jeans.jpg",
+        name:"jeans",
+        price:"$35.00",
+        strikedOffPrice:"$100.00"
+    },{
+        imgUrl:"smartwatch.jpg",
+        name:"smartwatch",
+        price:"$35.00",
+        strikedOffPrice:"$100.00"
+    },
+    {
+        imgUrl:"sneakers.jpg",
+        name:"sneakers",
+        price:"$35.00",
+        strikedOffPrice:"$100.00"
+    }
+]
+let cards=document.createElement("div");
+cards.setAttribute("class","cardcontainer");
+document.querySelector("body").append(cards);
+data.map(function(element){ /*we can also do this with forEach*/
+    let cards_boxes=document.createElement("div");
+cards_boxes.setAttribute("class","cardboxes");
+    let title=document.createElement("h1")
+    title.innerHTML=element.name;
+    let Price=document.createElement("h1");
+    Price.innerHTML=element.price;
+    let image=document.createElement("img");
+image.src=element.imgUrl;// it will store as src as key  for image 
+image.setAttribute("class","images")
+let strikedOffPrices =document.createElement("s")
+strikedOffPrices.innerText=element.strikedOffPrice;
+cards_boxes.append(image,title,Price,strikedOffPrices);
+cards.append(cards_boxes);
+
+
+});
+</script>

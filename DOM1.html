@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            column-gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <input class="num1" type="text" placeholder="Enter 1st number">
+    <input class="num2" type="text" placeholder="Enter 2nd number">
+    <div class="buttons">
+        <button id="add">Add</button>
+        <button id="sub">Sub</button>
+        <button id="mult">Mult</button>
+        <button id="divide">Divide</button>
+    </div>
+
+    <script>
+        /* The input values (i.e n1 and n2) should be retrieved inside the functions every time where you perform the calculations */
+        document.getElementById("add").addEventListener("click", addfun);
+        document.getElementById("sub").addEventListener("click", subfun);
+        document.getElementById("mult").addEventListener("click", multfun);
+        document.getElementById("divide").addEventListener("click", dividefun);
+
+        function addfun() {
+            let n1 = parseFloat(document.querySelector(".num1").value);
+            let n2 = parseFloat(document.querySelector(".num2").value);
+            let res = n1 + n2;
+            alert(res);
+        }
+
+        function subfun() {
+            let n1 = parseFloat(document.querySelector(".num1").value);
+            let n2 = parseFloat(document.querySelector(".num2").value);
+            let res = n1 - n2;
+            alert(res);
+        }
+
+        function multfun() {
+            let n1 = parseFloat(document.querySelector(".num1").value);
+            let n2 = parseFloat(document.querySelector(".num2").value);
+            let res = n1 * n2;
+            alert(res);
+        }
+
+        function dividefun() {
+            let n1 = parseFloat(document.querySelector(".num1").value);/*as in value(i.e key)its value will be in strings so we need to convert string in to numbers to perform caluclations*/
+            let n2 = parseFloat(document.querySelector(".num2").value);
+            if (n2 !== 0) {
+                let res = n1 / n2;
+                alert(res);
+            } else {
+                alert("Cannot divide by zero!");
+            }
+        }
+    </script>
+
+</body>
+</html>

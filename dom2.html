@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>", initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <button>show quote in console</button> 
+   <p id="quote">talk ischeap show me the code</p>
+</body>
+</html>
+<script>
+    
+    let oup=document.querySelector("p").innerText;
+    let btn1=document.querySelector("button");
+    btn1.addEventListener("click",quotefun);
+    function quotefun(){
+        console.log(oup);
+    }
+</script>

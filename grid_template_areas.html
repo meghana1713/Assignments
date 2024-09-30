@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid_container {
+            border: 1px solid green;
+            display: grid;
+            grid-template-columns: 100px 100px 100px 100px; /* Adjusted for visibility */
+            grid-template-rows: 100px 100px 100px; /* Adjusted for visibility */
+            grid-template-areas:
+                "element1 element1 element1 element2"
+                "element1 element1 element1 element2"
+                "element1 element1 element1 element2";
+        }
+        .item1 {
+            border: 2px solid yellow;
+            background-color: blue;
+            grid-area: element1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .item2 {
+            background-color: aqua;
+            border: 2px solid yellow;
+            grid-area: element2;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid_container">
+        <div class="item1">item1</div>
+        <div class="item2">item2</div>
+    </div>
+</body>
+</html>

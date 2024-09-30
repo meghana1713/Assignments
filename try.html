@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var data = [
+    {
+        imgUrl:"https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi1.jpg.pagespeed.ic.mkSk-Af1ka.webp",
+        name:"LATEST MEN’S SNEAKER",
+        price:"$25.00",
+        strikedOffPrice:"$95.00"
+    },{
+        imgUrl:"https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi2.jpg.pagespeed.ic.uBrpABaJqp.webp",
+        name:"LATEST MEN’S SNEAKER",
+        price:"$35.00",
+        strikedOffPrice:"$100.00"
+    },{
+        imgUrl:"https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi3.jpg.pagespeed.ic.iO_cFEPy2K.webp",
+        name:"LATEST MEN’S SNEAKER",
+        price:"$35.00",
+        strikedOffPrice:"$100.00"
+    },
+    {
+        imgUrl:"https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi4.jpg.pagespeed.ic.kmiQW8I5wx.webp",
+        name:"LATEST MEN’S SNEAKER",
+        price:"$35.00",
+        strikedOffPrice:"$100.00"
+    }
+]
+
+let cards = document.createElement("div");
+document.querySelector("body").append(cards);
+
+data.map(function(element){
+    let cards_boxes = document.createElement("div");
+
+    let title = document.createElement("h1");
+    title.innerHTML = element.name;
+
+    let price = document.createElement("h1");
+    price.innerHTML = element.price;
+
+    let image = document.createElement("img");
+    image.src = element.imgUrl; // Use image.src to set the source of the image
+
+    let strikedOffPrices = document.createElement("h1");
+    strikedOffPrices.innerText = element.strikedOffPrice;
+
+    // Append all elements to the cards_boxes
+    cards_boxes.append(image, title, price, strikedOffPrices);
+
+    // Append the cards_boxes to the cards container
+    cards.append(cards_boxes);
+});
+
+</script>

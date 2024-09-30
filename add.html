@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+        h2 { margin-top: 0; }
+        .container { display: flex; justify-content: space-between; }
+        .product, .cart-item { border: 1px solid #ddd; background-color: #fff; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
+        .product h3, .cart-item p { margin: 0 0 10px 0; }
+        .product button, .cart-item button { padding: 5px 10px; background-color: #007bff; color: #fff; border: none; border-radius: 3px; cursor: pointer; }
+        .product button:hover, .cart-item button:hover { background-color: #0056b3; }
+        #cart-container { margin-top: 30px; }
+        #cart-info { position: fixed; top: 20px; right: 20px; background-color: #007bff; color: #fff; padding: 10px; border-radius: 5px; }
+        #cart-info p { margin: 0; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; }
+        .cart-item .details { flex: 1; }
+        .cart-item .actions { display: flex; align-items: center; }
+        .cart-item .actions button { margin-left: 10px; }
+        #promo-section { margin-top: 20px; }
+        #promo-section input { padding: 5px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Cart Information (visible on all pages) -->
+    <div id="cart-info">
+        <p>Items in Cart: <span id="cart-items-count">0</span></p>
+    </div>
+
+    <!-- Product List -->
+    <div id="products" class="container">
+        <div class="product" data-id="1">
+            <h3>Product 1</h3>
+            <p>Price: $<span class="price">100</span></p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product" data-id="2">
+            <h3>Product 2</h3>
+            <p>Price: $<span class="price">150</span></p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <div class="product" data-id="3">
+            <h3>Product 3</h3>
+            <p>Price: $<span class="price">200</span></p>
+            <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Cart Container -->
+    <div id="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <p>Total Items: <span id="total-items">0</span></p>
+        <p>Total Price: $<span id="total-price">0.00</span></p>
+
+        <div id="promo-section">
+            <input type="text" id="promo-code" placeholder="Enter promo code">
+            <button id="apply-promo-btn">Apply Promo</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartUI();
+            renderCart();
+        });
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const productElement = this.closest('.product');
+                const productId = productElement.dataset.id;
+                const productName = productElement.querySelector('h3').innerText;
+                const productPrice = parseFloat(productElement.querySelector('.price').innerText);
+                
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                const existingProduct = cart.find(product => product.id === productId);
+
+                if (existingProduct) {
+                    existingProduct.quantity++;
+                } else {
+                    cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                updateCartUI();
+            });
+        });
+
+        function updateCartUI() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsCount = cart.reduce((count, product) => count + product.quantity, 0);
+            document.getElementById('cart-items-count').innerText = cartItemsCount;
+        }
+
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            cartItemsContainer.innerHTML = '';
+
+            cart.forEach(product => {
+                totalItems += product.quantity;
+                totalPrice += product.price * product.quantity;
+
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item" data-id="${product.id}">
+                        <div class="details">
+                            <p>${product.name}</p>
+                            <p>Price: $${product.price.toFixed(2)}</p>
+                            <p>Quantity: <span class="quantity">${product.quantity}</span></p>
+                        </div>
+                        <div class="actions">
+                            <button class="increase-quantity">+</button>
+                            <button class="decrease-quantity">-</button>
+                            <button class="remove-item">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('total-items').innerText = totalItems;
+            document.getElementById('total-price').innerText = totalPrice.toFixed(2);
+
+            document.getElementById('cart-items-count').innerText = totalItems;
+
+            attachCartEventListeners();
+        }
+
+        function attachCartEventListeners() {
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartItem = this.closest('.cart-item');
+                    const productId = cartItem.dataset.id;
+
+                    let cart = JSON.parse(localStorage.getItem('cart'));
+                    const product = cart.find(p => p.id === productId);
+                    product.quantity++;
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                });
+            });
+
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartItem = this.closest('.cart-item');
+                    const productId = cartItem.dataset.id;
+
+                    let cart = JSON.parse(localStorage.getItem('cart'));
+                    const product = cart.find(p => p.id === productId);
+                    if (product.quantity > 1) {
+                        product.quantity--;
+                    } else {
+                        cart = cart.filter(p => p.id !== productId);
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                });
+            });
+
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartItem = this.closest('.cart-item');
+                    const productId = cartItem.dataset.id;
+
+                    let cart = JSON.parse(localStorage.getItem('cart'));
+                    cart = cart.filter(p => p.id !== productId);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                });
+            });
+
+            document.getElementById('apply-promo-btn').addEventListener('click', function() {
+                const promoCode = document.getElementById('promo-code').value;
+
+                if (promoCode === 'flmi30') {
+                    const totalPriceElement = document.getElementById('total-price');
+                    const totalPrice = parseFloat(totalPriceElement.innerText);
+                    const discountedPrice = totalPrice * 0.7;
+                    totalPriceElement.innerText = discountedPrice.toFixed(2);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+

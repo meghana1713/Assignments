@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .product_details{
+            display: flex;
+            justify-content: space-evenly;
+            height:40px;
+            width:50%;
+        }
+        
+    </style>
+</head>
+<body>
+    <form id="form1">
+        <h1>Add Products here</h1>
+        <div class="product_details">
+        <select id="productcategory">
+            <option value="electronics">
+                electronics
+            </option>
+            <option value="furniture">furniture</option>
+            <option values="home appliance">home appliance</option>
+            <option value="books">books</option>
+        </select>
+        <input id="producttitle" placeholder="product title"/>
+        
+        <textarea id="description"> </textarea>
+        <input id="product_price" placeholder="enter price"/>
+    </div>
+    <input type="submit" id="submit" value="submit"/>
+
+    </form>
+
+</body>
+</html>
+<script>
+    document.querySelector("#form1").addEventListener("submit",productsAdd);
+    let productArr;
+    productArr=JSON.parse(localStorage.getItem("productlist")!==null)||[];
+    function productsAdd(){
+        event.preventDefault();
+let prodObj={
+    productcategory:document.querySelector("#productcategory").value,
+    producttitle:document.querySelector("#producttitle").value,
+    description :document.querySelector("#description").value,
+    product_price:document.querySelector("#product_price").value,
+};
+productArr.push(prodObj);
+localStorage.setItem("productlist",JSON.stringify(productArr));
+    }
+</script>

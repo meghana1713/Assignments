@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="country">
+        <option value="india">India</option>
+        <option value="US">US</option>
+        <option value="china">China</option>
+        <option value="Nepal">Nepal</option>
+        <option value="Australia">Australia</option>
+        <option value="France">France</option>
+        <option value="Germany">Germany</option>
+        <option value="South Africa">South Africa</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Mexico">Mexico</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Brazil">Brazil</option>
+        <option value="canada">Canada</option>
+        <option value="Singapore">Singapore</option>
+        <option value="Sweden">Sweden</option>
+    </select>
+
+    <script>
+        var select = document.getElementById('country');
+
+        function getContinent() {
+            let country1 = select.value;
+            let result;
+
+            switch (country1) {
+                case "india":
+                case "china":
+                case "Nepal":
+                case "Singapore":
+                    result = "Asia";
+                    alert("continent is"+result);
+                    break;
+                case "US":
+                case "Mexico":
+                case "canada":
+                    result = "North America";
+                    alert("continent is"+result);
+
+                    break;
+                case "Australia":
+                    result = "Oceania";
+                    alert("continent is"+result);
+
+                    break;
+                case "France":
+                case "Sweden":
+                    result = "Europe";
+                    alert("continent is"+result);
+
+                    break;
+                case "Germany":
+                case "South Africa":
+                case "Nigeria":
+                    result = "Africa";
+                    alert("continent is"+result);
+
+                    break;
+                case "Argentina":
+                case "Brazil":
+                    result = "South America";
+                    alert("continent is"+result);
+
+                    break;
+                default:
+                    result = "not a valid country";
+                    alert("continent is"+result);
+
+            }
+        }
+            //
+
+        // Add an event listener to handle changes in the select element
+        select.addEventListener('change', getContinent);
+
+        // Initial call to display the continent for the initially selected country
+      
+    </script>
+</body>
+</html>

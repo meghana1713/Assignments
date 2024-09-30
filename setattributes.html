@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+</body>
+</html>
+<script>
+    let parentBox=document.createElement("div");
+    parentBox.setAttribute("class","parent")
+    let div1=document.createElement("div");
+    div1.innerText="div1";
+    let div2=document.createElement("div");
+    div2.innerText="div2";
+   let div3=document.createElement("div");
+   div3.innerText="div3";
+   parentBox.append(div1,div2,div3);
+   let body1=document.querySelector("body");
+   body1.append(parentBox);
+</script>
